@@ -24,6 +24,12 @@ public class RefrigeratedContainer(int height, int depth, int maximumPayload, in
         base.Load(mass);
     }
 
+    public override void Empty()
+    {
+        base.Empty();
+        StoredType = null;
+    }
+
     public override string ToString()
     {
         return base.ToString() + "\n" +
