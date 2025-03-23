@@ -79,6 +79,19 @@ public class Ship
         return _containers.Remove(container);
     }
 
+    public bool Transfer(Ship ship, BaseContainer container)
+    {
+        if (!_containers.Contains(container))
+        {
+            return false;
+        }
+        
+        ship.Load(container);
+        _containers.Remove(container);
+        
+        return true;
+    }
+
     public override string ToString()
     {
         var sb = new StringBuilder();
