@@ -34,7 +34,8 @@ public class Ship
     public void Load(BaseContainer container)
     {
         if (_containers.Count == MaxAmount) throw new OverfillException("Max container capacity reached");
-        if (GetTotalMass() + container.Mass/1000 > MaxWeight) throw new OverfillException("Loaded mass exceeds max amount");
+        if (GetTotalMass() + container.Mass / 1000 > MaxWeight)
+            throw new OverfillException("Loaded mass exceeds max amount");
         _containers.Add(container);
     }
 
@@ -81,14 +82,11 @@ public class Ship
 
     public bool Transfer(Ship ship, BaseContainer container)
     {
-        if (!_containers.Contains(container))
-        {
-            return false;
-        }
-        
+        if (!_containers.Contains(container)) return false;
+
         ship.Load(container);
         _containers.Remove(container);
-        
+
         return true;
     }
 

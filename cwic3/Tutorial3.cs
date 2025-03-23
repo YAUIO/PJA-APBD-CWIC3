@@ -8,42 +8,31 @@ public class Tutorial3
     public static void Main(string[] args)
     {
         Console.WriteLine("Do you want to run test code or CLI interface? (test/cli)");
-        string? answer = Console.ReadLine();
+        var answer = Console.ReadLine();
         if (answer == null || answer.Equals("test"))
         {
             Test();
             return;
-        } else if (!answer.Equals("cli"))
-        {
-            throw new Exception("Wrong answer provided");
         }
 
-        while (true)
-        {
-            Menu();
-        }
+        if (!answer.Equals("cli")) throw new Exception("Wrong answer provided");
+
+        while (true) Menu();
     }
 
-    private enum Command
-    {
-        AddShip, AddContainer, Exit, Error
-    }
     private static void Menu()
     {
-        Console.WriteLine("Possible commands: " + String.Join(',', Enum.GetNames<Command>()));
-        string? answer = Console.ReadLine();
+        Console.WriteLine("Possible commands: " + string.Join(',', Enum.GetNames<Command>()));
+        var answer = Console.ReadLine();
         Command command;
 
         if (answer == null) return;
-        if (!Enum.TryParse<Command>(answer, out command))
-        {
-            command = Command.Error;
-        }
-        
-        
+        if (!Enum.TryParse(answer, out command)) command = Command.Error;
+
+
         switch (command)
         {
-            case Command.Error : Console.WriteLine("Error"); break;
+            case Command.Error: Console.WriteLine("Error"); break;
             case Command.AddShip: ShipManager.Create(); break;
             case Command.AddContainer: ContainerManager.Create(); break;
             case Command.Exit: Environment.Exit(0); break;
@@ -109,5 +98,13 @@ public class Tutorial3
 
         Console.WriteLine(g + "\n");
         Console.WriteLine(ship);
+    }
+
+    private enum Command
+    {
+        AddShip,
+        AddContainer,
+        Exit,
+        Error
     }
 }

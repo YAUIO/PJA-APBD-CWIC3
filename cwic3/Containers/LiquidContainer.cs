@@ -2,7 +2,8 @@
 
 public class LiquidContainer : BaseContainer, IHazardNotifier
 {
-    public LiquidContainer(int height, int depth, int maximumPayload, int tareWeight) : base(height, depth, maximumPayload, tareWeight)
+    public LiquidContainer(int height, int depth, int maximumPayload, int tareWeight) : base(height, depth,
+        maximumPayload, tareWeight)
     {
     }
 

@@ -4,6 +4,5 @@ public class ShipManager
 {
     public static void Create()
     {
-        
     }
 }
