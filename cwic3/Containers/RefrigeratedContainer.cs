@@ -19,11 +19,11 @@ public class RefrigeratedContainer(int height, int depth, int maximumPayload, do
         if (StoredType == null) StoredType = type;
         if (!StoredType.Id.Equals(type.Id)) throw new ProductTypeMismatchException(StoredType, type);
         if (Temperature < type.Temperature)
-            throw new TemperatureUnsuitableException(StoredType.Temperature, type.Temperature);
+            throw new TemperatureUnsuitableException(Temperature, type.Temperature);
 
         base.Load(mass);
     }
-    
+
     public override string ToString()
     {
         return base.ToString() + "\n" +
