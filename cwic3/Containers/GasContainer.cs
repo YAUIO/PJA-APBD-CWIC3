@@ -6,8 +6,9 @@ public class GasContainer : BaseContainer, IHazardNotifier
 {
     public GasContainer(int height, int depth, int maximumPayload) : base(height, depth, maximumPayload)
     {
-        SerialNumber = GenerateSerialNumber('G');
     }
+
+    protected override char ConType { get; } = 'G';
 
     public bool Hazardous { set; get; }
 
@@ -28,11 +29,9 @@ public class GasContainer : BaseContainer, IHazardNotifier
         CargoWeight -= removedMass;
     }
 
-    public override void Load(int mass)
+    public override string ToString()
     {
-        if (mass > MaximumPayload) throw new OverfillException("Cannot exceed Maximum Payload");
-
-        CargoWeight = mass;
-        Mass = mass;
+        return base.ToString() + "\n" +
+               "Hazardous: " + Hazardous;
     }
 }

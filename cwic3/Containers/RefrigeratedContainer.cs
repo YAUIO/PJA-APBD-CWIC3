@@ -7,12 +7,7 @@ public class RefrigeratedContainer(int height, int depth, int maximumPayload, do
 {
     public Product? StoredType { set; get; }
     public double Temperature { set; get; } = temperature;
-
-    public override void Empty()
-    {
-        Mass = TareWeight;
-        CargoWeight = 0;
-    }
+    protected override char ConType { get; } = 'C';
 
     public override void Load(int mass)
     {
@@ -21,12 +16,18 @@ public class RefrigeratedContainer(int height, int depth, int maximumPayload, do
 
     public void Load(int mass, Product type)
     {
-        if (mass > MaximumPayload) throw new OverfillException("Cannot exceed Maximum Payload");
         if (StoredType == null) StoredType = type;
         if (!StoredType.Id.Equals(type.Id)) throw new ProductTypeMismatchException(StoredType, type);
-        if (Temperature < type.Temperature) throw new TemperatureUnsuitableException(StoredType.Temperature, type.Temperature);
-        
-        CargoWeight = mass;
-        Mass = mass;
+        if (Temperature < type.Temperature)
+            throw new TemperatureUnsuitableException(StoredType.Temperature, type.Temperature);
+
+        base.Load(mass);
+    }
+    
+    public override string ToString()
+    {
+        return base.ToString() + "\n" +
+               "Stored Type: " + StoredType + "\n" +
+               "Temperature: " + Temperature;
     }
 }
