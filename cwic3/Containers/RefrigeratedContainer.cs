@@ -16,7 +16,7 @@ public class RefrigeratedContainer(int height, int depth, int maximumPayload, do
 
     public override void Load(int mass)
     {
-        throw new NotImplementedException("Not supported for refrigerated container");
+        throw new NotSupportedException("Not supported for refrigerated container");
     }
 
     public void Load(int mass, Product type)
