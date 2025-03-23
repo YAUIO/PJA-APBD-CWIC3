@@ -7,7 +7,8 @@ public class Tutorial3
 {
     public static void Main(string[] args)
     {
-        Console.WriteLine("Do you want to run test code or CLI interface? (test/cli)");
+        Test();
+        /*Console.WriteLine("Do you want to run test code or CLI interface? (test/cli)");
         var answer = Console.ReadLine();
         if (answer == null || answer.Equals("test"))
         {
@@ -17,7 +18,7 @@ public class Tutorial3
 
         if (!answer.Equals("cli")) throw new Exception("Wrong answer provided");
 
-        while (true) Menu();
+        while (true) Menu();*/
     }
 
     private static void Menu()
@@ -34,8 +35,13 @@ public class Tutorial3
         {
             case Command.Error: Console.WriteLine("Error"); break;
             case Command.AddShip: ShipManager.Create(); break;
+            case Command.SelectShip: ShipManager.Select(); break;
+            case Command.RemoveShip: ShipManager.Remove(); break;
+            case Command.SelectContainer: ContainerManager.Select(); break;
+            case Command.RemoveContainer: ContainerManager.Remove(); break;
             case Command.AddContainer: ContainerManager.Create(); break;
             case Command.Exit: Environment.Exit(0); break;
+            
         }
     }
 
@@ -103,7 +109,11 @@ public class Tutorial3
     private enum Command
     {
         AddShip,
+        SelectShip,
+        RemoveShip,
         AddContainer,
+        SelectContainer,
+        RemoveContainer,
         Exit,
         Error
     }
