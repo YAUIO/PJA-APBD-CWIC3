@@ -10,7 +10,7 @@ public abstract class BaseContainer
     public readonly int MaximumPayload;
 
     public readonly string SerialNumber;
-    
+
     public BaseContainer(int height, int depth, int maximumPayload)
     {
         Height = height;
@@ -48,6 +48,9 @@ public abstract class BaseContainer
                "Depth: " + Depth + "\n" +
                "Height: " + Height + "\n" +
                "Maximum Payload: " + MaximumPayload + "\n" +
+               "Mass: " + Mass + "\n" +
+               "Tare Weight: " + TareWeight + "\n" +
+               "Cargo Weight: " + CargoWeight + "\n" +
                "S/N: " + SerialNumber;
     }
 }
