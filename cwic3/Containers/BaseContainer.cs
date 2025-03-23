@@ -10,8 +10,7 @@ public abstract class BaseContainer
     public readonly int MaximumPayload;
 
     public readonly string SerialNumber;
-
-//todo tostring for each container
+    
     public BaseContainer(int height, int depth, int maximumPayload)
     {
         Height = height;
@@ -40,6 +39,15 @@ public abstract class BaseContainer
     {
         if (mass > MaximumPayload) throw new OverfillException("Cannot exceed Maximum Payload");
         CargoWeight = mass;
-        Mass = mass;
+        Mass = mass + TareWeight;
+    }
+
+    public override string ToString()
+    {
+        return "Container Info: \n" +
+               "Depth: " + Depth + "\n" +
+               "Height: " + Height + "\n" +
+               "Maximum Payload: " + MaximumPayload + "\n" +
+               "S/N: " + SerialNumber;
     }
 }
