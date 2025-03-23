@@ -34,7 +34,7 @@ public class Ship
     public void Load(BaseContainer container)
     {
         if (_containers.Count == MaxAmount) throw new OverfillException("Max container capacity reached");
-        if (GetTotalMass() + container.Mass > MaxWeight) throw new OverfillException("Loaded mass exceeds max amount");
+        if (GetTotalMass() + container.Mass/1000 > MaxWeight) throw new OverfillException("Loaded mass exceeds max amount");
         _containers.Add(container);
     }
 
@@ -59,10 +59,8 @@ public class Ship
             _containers.Insert(ind, container);
             return true;
         }
-        else
-        {
-            return false;
-        }
+
+        return false;
     }
 
     public bool Replace(string serialNumber, BaseContainer replacement)
@@ -83,15 +81,12 @@ public class Ship
 
     public override string ToString()
     {
-        StringBuilder sb = new StringBuilder();
+        var sb = new StringBuilder();
         sb.Append("{ \n");
-        foreach (BaseContainer c in _containers)
-        {
-            sb.Append(c).Append("\n\n");
-        }
+        foreach (var c in _containers) sb.Append(c).Append("\n\n");
         if (sb.Length > 0) sb.Remove(sb.Length - 2, 2);
         sb.Append(" }");
-        
+
         return
             "Ship info: \n" +
             "MaxWeight: " + MaxWeight + " \n" +
