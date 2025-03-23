@@ -1,31 +1,45 @@
-﻿namespace cwic3.Containers;
+﻿using cwic3.Exceptions;
+
+namespace cwic3.Containers;
 
 public abstract class BaseContainer
 {
     private static int _counter;
+    public readonly int Depth;
+    public readonly int Height;
+    public readonly int MaximumPayload;
+
+    public readonly string SerialNumber;
+
 //todo tostring for each container
     public BaseContainer(int height, int depth, int maximumPayload)
     {
         Height = height;
         Depth = depth;
         MaximumPayload = maximumPayload;
-        SerialNumber = "KON-C-0000";
+        SerialNumber = GenerateSerialNumber();
     }
 
     public int Mass { set; get; }
     public int TareWeight { set; get; }
     public int CargoWeight { set; get; }
-    public int Height { protected set; get; }
-    public int Depth { protected set; get; }
-    public int MaximumPayload { protected set; get; }
-    public string SerialNumber { protected set; get; }
+    protected virtual char ConType { get; } = 'B';
 
-    protected string GenerateSerialNumber(char ConType)
+    protected string GenerateSerialNumber()
     {
         return "KON-" + ConType.ToString().ToUpper() + "-" + _counter++;
     }
 
-    public abstract void Empty();
+    public virtual void Empty()
+    {
+        Mass = TareWeight;
+        CargoWeight = 0;
+    }
 
-    public abstract void Load(int mass);
+    public virtual void Load(int mass)
+    {
+        if (mass > MaximumPayload) throw new OverfillException("Cannot exceed Maximum Payload");
+        CargoWeight = mass;
+        Mass = mass;
+    }
 }
