@@ -3,7 +3,7 @@
 public abstract class BaseContainer
 {
     private static int _counter;
-
+//todo tostring for each container
     public BaseContainer(int height, int depth, int maximumPayload)
     {
         Height = height;
