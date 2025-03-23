@@ -1,10 +1,8 @@
-﻿using cwic3.Exceptions;
-
-namespace cwic3.Containers;
+﻿namespace cwic3.Containers;
 
 public class GasContainer : BaseContainer, IHazardNotifier
 {
-    public GasContainer(int height, int depth, int maximumPayload) : base(height, depth, maximumPayload)
+    public GasContainer(int height, int depth, int maximumPayload, int tareWeight) : base(height, depth, maximumPayload, tareWeight)
     {
     }
 

@@ -8,19 +8,19 @@ public abstract class BaseContainer
     public readonly int Depth;
     public readonly int Height;
     public readonly int MaximumPayload;
-
     public readonly string SerialNumber;
+    public readonly int TareWeight;
 
-    public BaseContainer(int height, int depth, int maximumPayload)
+    public BaseContainer(int height, int depth, int maximumPayload, int tareWeight)
     {
         Height = height;
         Depth = depth;
         MaximumPayload = maximumPayload;
+        TareWeight = tareWeight;
         SerialNumber = GenerateSerialNumber();
     }
 
     public int Mass { set; get; }
-    public int TareWeight { set; get; }
     public int CargoWeight { set; get; }
     protected virtual char ConType { get; } = 'B';
 

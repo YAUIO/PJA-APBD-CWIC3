@@ -1,10 +1,8 @@
-﻿using cwic3.Exceptions;
-
-namespace cwic3.Containers;
+﻿namespace cwic3.Containers;
 
 public class LiquidContainer : BaseContainer, IHazardNotifier
 {
-    public LiquidContainer(int height, int depth, int maximumPayload) : base(height, depth, maximumPayload)
+    public LiquidContainer(int height, int depth, int maximumPayload, int tareWeight) : base(height, depth, maximumPayload, tareWeight)
     {
     }
 
@@ -29,7 +27,7 @@ public class LiquidContainer : BaseContainer, IHazardNotifier
 
         base.Load(mass);
     }
-    
+
     public override string ToString()
     {
         return base.ToString() + "\n" +

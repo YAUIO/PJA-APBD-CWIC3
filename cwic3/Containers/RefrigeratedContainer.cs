@@ -2,8 +2,8 @@
 
 namespace cwic3.Containers;
 
-public class RefrigeratedContainer(int height, int depth, int maximumPayload, double temperature)
-    : BaseContainer(height, depth, maximumPayload)
+public class RefrigeratedContainer(int height, int depth, int maximumPayload, int tareWeight, double temperature)
+    : BaseContainer(height, depth, maximumPayload, tareWeight)
 {
     public Product? StoredType { set; get; }
     public double Temperature { set; get; } = temperature;
